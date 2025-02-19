@@ -4,9 +4,16 @@ import { IconButton } from '@/components/icon-button';
 import { InputFilds, InputIcon, InputRoot } from '@/components/input';
 import { Copy, Link } from 'lucide-react';
 
-export function InviteLinkInput() {
+interface InviteLinkInputProps {
+	inviteLink: string;
+}
+
+export function InviteLinkInput({
+	inviteLink,
+	...props
+}: InviteLinkInputProps) {
 	function copyInviteLink() {
-		console.log('Hello Word');
+		navigator.clipboard.writeText(inviteLink);
 	}
 
 	return (
@@ -15,10 +22,7 @@ export function InviteLinkInput() {
 				<Link className="size-5" />
 			</InputIcon>
 
-			<InputFilds
-				readOnly
-				defaultValue="http://localhost:3000/invite/135418564151hg16156"
-			/>
+			<InputFilds readOnly defaultValue={inviteLink} />
 			<IconButton className="-mr-2" onClick={copyInviteLink}>
 				<Copy className="size-5" />
 			</IconButton>
